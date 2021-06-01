@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-
 plugins {
     id("org.springframework.boot") version PluginVersions.springBoot apply false
 
@@ -13,6 +12,8 @@ plugins {
 }
 
 allprojects {
+    group = "com.github.shouwn"
+
     repositories {
         mavenCentral()
     }

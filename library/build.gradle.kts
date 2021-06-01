@@ -3,8 +3,6 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 val jar: Jar by tasks
 val bootJar: BootJar by tasks
 
-group = "com.github.shouwn"
-
 bootJar.enabled = false
 jar.apply {
     enabled = true

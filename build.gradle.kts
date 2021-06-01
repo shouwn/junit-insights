@@ -8,6 +8,7 @@ plugins {
     kotlin("plugin.serialization") version PluginVersions.kotlin
     kotlin("plugin.spring") version PluginVersions.kotlin apply false
 
+    `java-library`
     `maven-publish`
 }
 

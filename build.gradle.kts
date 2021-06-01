@@ -7,6 +7,8 @@ plugins {
     kotlin("kapt") version PluginVersions.kotlin
     kotlin("plugin.serialization") version PluginVersions.kotlin
     kotlin("plugin.spring") version PluginVersions.kotlin apply false
+
+    `maven-publish`
 }
 
 allprojects {
@@ -23,6 +25,8 @@ subprojects {
         plugin("kotlin-kapt")
         plugin("kotlin-spring")
         plugin("kotlinx-serialization")
+
+        plugin("maven-publish")
     }
 
     java.sourceCompatibility = JavaVersion.VERSION_11

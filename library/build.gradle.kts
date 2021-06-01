@@ -10,6 +10,10 @@ jar.apply {
     exclude("main.js")
 }
 
+apply {
+    plugin("maven-publish")
+}
+
 dependencies {
     compileOnly(Dependencies.junitApi)
     compileOnly(Dependencies.junitPlatformLauncher)

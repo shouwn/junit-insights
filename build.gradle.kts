@@ -13,9 +13,6 @@ plugins {
 }
 
 allprojects {
-    group = "com.github.shouwn"
-    version = "1.3.0-SNAPSHOT"
-
     repositories {
         mavenCentral()
     }
@@ -29,8 +26,6 @@ subprojects {
         plugin("kotlin-kapt")
         plugin("kotlin-spring")
         plugin("kotlinx-serialization")
-
-        plugin("maven-publish")
     }
 
     java.sourceCompatibility = JavaVersion.VERSION_11

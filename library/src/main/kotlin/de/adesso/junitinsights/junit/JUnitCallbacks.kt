@@ -93,7 +93,7 @@ class JUnitCallbacks :
      */
     private fun shouldNotBeBenched(context: ExtensionContext) =
             context.element
-                    .map<Boolean> { el -> isAnnotated(el, NoJUnitInsights::class.java) }
+                    .map { el -> isAnnotated(el, NoJUnitInsights::class.java) }
                     .orElse(false)
 
     /**

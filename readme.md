@@ -122,7 +122,7 @@ repositories {
 }
 
 dependencies {
-    testCompile ('de.adesso:junit-insights:1.1.0-SNAPSHOT')
+    testImplementation ('de.adesso:junit-insights:1.1.0-SNAPSHOT')
 }
 ```
 
@@ -152,7 +152,7 @@ Gradle:
 
 ```gradle
 dependencies {
-    testCompile files('../junit-insights/library/build/libs/junit-insights-1.1.0.jar')
+    testImplementation files('../junit-insights/library/build/libs/junit-insights-1.1.0.jar')
 }
 ```
 Maven:

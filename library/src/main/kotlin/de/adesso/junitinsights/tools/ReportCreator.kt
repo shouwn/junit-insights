@@ -5,6 +5,7 @@ import de.adesso.junitinsights.model.Report
 import de.adesso.junitinsights.model.TestClass
 import de.adesso.junitinsights.model.TestMethod
 import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
@@ -20,7 +21,7 @@ object ReportCreator : IReportCreator {
         val eventsGroupedByClass = groupEventsByClass(events)
         val testClasses = eventsGroupedByClass.map { classEvents -> processClassEvents(classEvents) }
         val springContextCreated = testClasses.fold(0) { acc, e -> acc + e.springContextCount }
-        val currentDate = Date()
+        val currentDate = ZonedDateTime.now()
         return Report(getReportPageTitle(currentDate), currentDate, springContextCreated, testClasses)
     }
 
@@ -137,8 +138,8 @@ object ReportCreator : IReportCreator {
         return result
     }
 
-    private fun getReportPageTitle(currentDate: Date): String {
-        val currentLocalDateTime = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+    private fun getReportPageTitle(currentDate: ZonedDateTime): String {
+        val currentLocalDateTime = currentDate.withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
         val titleDatePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
         return "JUnit Insights Report ${currentLocalDateTime.format(titleDatePattern)}"
     }

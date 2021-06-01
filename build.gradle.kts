@@ -12,8 +12,6 @@ plugins {
 }
 
 allprojects {
-    group = "com.github.shouwn"
-
     repositories {
         mavenCentral()
     }

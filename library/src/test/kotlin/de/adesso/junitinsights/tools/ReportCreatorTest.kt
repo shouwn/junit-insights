@@ -3,6 +3,7 @@ package de.adesso.junitinsights.tools
 import de.adesso.junitinsights.model.Event
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import java.time.ZonedDateTime
 import java.util.*
 
 class ReportCreatorTest {
@@ -13,7 +14,7 @@ class ReportCreatorTest {
         val report = ReportCreator.createReport(events)
         assertTrue(report.testClasses.isEmpty())
         assertTrue(report.springContextsCreated == 0)
-        assertTrue(report.created == Date() || report.created.before(Date()))
+        assertTrue(report.created == ZonedDateTime.now() || report.created.isBefore(ZonedDateTime.now()))
     }
 
     @Test
@@ -37,7 +38,7 @@ class ReportCreatorTest {
         events.add(Event("after all", Date(21), "test-class"))
         val report = ReportCreator.createReport(events)
 
-        assertTrue(report.created == Date() || report.created.before(Date()))
+        assertTrue(report.created == ZonedDateTime.now() || report.created.isBefore(ZonedDateTime.now()))
         assertEquals(1, report.testClasses.size)
         assertEquals(1, report.testClasses.first().methods.size)
 

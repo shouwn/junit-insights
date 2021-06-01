@@ -1,7 +1,8 @@
 package de.adesso.junitinsights.tools
 
-import com.google.gson.Gson
 import de.adesso.junitinsights.model.Report
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.InputStreamReader
@@ -25,10 +26,10 @@ object ReportWriter : IReportWriter {
         LoggerFactory.getLogger(this::class.java).debug("Report created at ${reportFile.absolutePath}")
     }
 
-    private fun generateJsonFromReport(report: Report): String = Gson().toJson(report)
+    private fun generateJsonFromReport(report: Report): String = Json.encodeToString(report)
 
     private fun insertJsonInTemplate(json: String): String {
-        val template = InputStreamReader(this.javaClass.getResourceAsStream("/index.html")).readText()
+        val template = InputStreamReader(this.javaClass.getResourceAsStream("/index.html")!!).readText()
         return template.replace("var OVERRIDE_REPORT = {}", "var OVERRIDE_REPORT = $json")
     }
 

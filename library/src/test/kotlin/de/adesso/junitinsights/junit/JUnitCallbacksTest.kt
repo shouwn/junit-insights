@@ -1,9 +1,9 @@
 package de.adesso.junitinsights.junit
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
 import de.adesso.junitinsights.model.EventLog
 import de.adesso.junitinsights.tools.InsightProperties
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
@@ -98,11 +98,11 @@ class JUnitCallbacksTest {
         assertEquals(0, EventLog.eventCount())
     }
 
-    private fun mockedExtensionContext(): ExtensionContext {
-        val mockedExtensionContext: ExtensionContext = mock()
-        whenever(mockedExtensionContext.testClass).thenReturn(Optional.of(this.javaClass))
-        whenever(mockedExtensionContext.getConfigurationParameter("de.adesso.junitinsights.enabled"))
-                .thenReturn(Optional.of("true"))
-        return mockedExtensionContext
+    private fun mockedExtensionContext(): ExtensionContext = mockk {
+        every { testClass } returns Optional.of(javaClass)
+        every { element } returns Optional.empty()
+        every { testMethod } returns Optional.empty()
+        every { getConfigurationParameter("de.adesso.junitinsights.enabled") } returns Optional.of("true")
+        every { getConfigurationParameter("de.adesso.junitinsights.reportpath") } returns Optional.empty()
     }
 }

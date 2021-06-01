@@ -6,6 +6,7 @@ val bootJar: BootJar by tasks
 bootJar.enabled = false
 jar.apply {
     enabled = true
+    archiveClassifier.set("")
     exclude("main.js")
 }
 

@@ -8,12 +8,16 @@ plugins {
     kotlin("plugin.serialization") version PluginVersions.kotlin
     kotlin("plugin.spring") version PluginVersions.kotlin apply false
 
+    `java-library`
     `maven-publish`
 }
 
 allprojects {
+    group = "com.github.shouwn"
+
     repositories {
         mavenCentral()
+        maven(url = "https://jitpack.io")
     }
 }
 
@@ -25,6 +29,8 @@ subprojects {
         plugin("kotlin-kapt")
         plugin("kotlin-spring")
         plugin("kotlinx-serialization")
+
+        plugin("maven-publish")
     }
 
     java.sourceCompatibility = JavaVersion.VERSION_11
@@ -44,6 +50,18 @@ subprojects {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict", "-Xinline-classes", "-Xjvm-default=enable")
             jvmTarget = "11"
+        }
+    }
+
+    java {
+        withSourcesJar()
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from(components["java"])
+            }
         }
     }
 }
